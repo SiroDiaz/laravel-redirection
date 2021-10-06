@@ -2,35 +2,54 @@
 
 namespace VendorName\Skeleton\Tests;
 
+use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use VendorName\Skeleton\SkeletonServiceProvider;
+use SiroDiaz\Redirection\RedirectionServiceProvider;
+use SiroDiaz\Redirection\RedirectRequests;
 
 class TestCase extends Orchestra
 {
-    protected function setUp(): void
+    public function setUp(): void
     {
         parent::setUp();
 
+        $this->getEnvironmentSetUp($this->app);
+        $this->setUpDatabase();
+        $this->setUpMiddleware($this->app);
+
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'VendorName\\Skeleton\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'SiroDiaz\\Redirection\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
-            SkeletonServiceProvider::class,
+            RedirectionServiceProvider::class,
         ];
     }
 
-    public function getEnvironmentSetUp($app)
+    public function getEnvironmentSetUp($app): void
     {
         config()->set('database.default', 'testing');
+        config()->set('database.connections.sqlite', [
+            'driver' => 'sqlite',
+            'database' => ':memory:',
+            'prefix' => '',
+        ]);
+    }
 
-        /*
+    public function setUpDatabase(): void
+    {
         $migration = include __DIR__.'/../database/migrations/create_skeleton_table.php.stub';
         $migration->up();
-        */
+    }
+
+    public function setUpMiddleware(Application $app): void
+    {
+        $app->make(Kernel::class)->pushMiddleware(RedirectRequests::class);
     }
 }

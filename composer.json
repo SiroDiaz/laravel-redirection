@@ -1,46 +1,52 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "sirodiaz/laravel-redirection",
+    "description": "Laravel package that allows storing in database urls to redirect for SEO purposes",
     "keywords": [
-        ":vendor_name",
+        "sirodiaz",
         "laravel",
-        ":package_slug"
+        "laravel-redirection",
+        "seo",
+        "url",
+        "slug",
+        "redirects",
+        "redirect",
+        "laravel-redirect",
+        "laravel-redirects"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/SiroDiaz/laravel-redirection",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Siro Díaz Palazón",
+            "email": "sirodiaz93@gmail.com",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^8.0",
-        "spatie/laravel-package-tools": "^1.4.3",
-        "illuminate/contracts": "^8.37"
+        "illuminate/contracts": "^8.63",
+        "illuminate/database": "^8.63",
+        "illuminate/support": "^8.63",
+        "spatie/laravel-package-tools": "^1.9"
     },
     "require-dev": {
         "nunomaduro/collision": "^5.3",
         "orchestra/testbench": "^6.15",
-        "pestphp/pest": "^1.18",
-        "pestphp/pest-plugin-laravel": "^1.1",
-        "spatie/laravel-ray": "^1.23",
         "vimeo/psalm": "^4.8"
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "SiroDiaz\\Redirection\\": "src",
+            "SiroDiaz\\Redirection\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "SiroDiaz\\Redirection\\Tests\\": "tests"
         }
     },
     "scripts": {
-        "test": "./vendor/bin/pest --no-coverage",
+        "test": "./vendor/bin/phpunit --no-coverage",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
     },
     "config": {
@@ -49,11 +55,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
-            ],
-            "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\SkeletonFacade"
-            }
+                "SiroDiaz\\Redirection\\RedirectionServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",

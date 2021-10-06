@@ -1,9 +1,9 @@
-# :package_description
+# Laravel package for manage your URL redirects in database
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/:vendor_slug/:package_slug/run-tests?label=tests)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/:vendor_slug/:package_slug/Check%20&%20fix%20styling?label=code%20style)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/SiroDiaz/laravel-redirection.svg?style=flat-square)](https://packagist.org/packages/SiroDiaz/laravel-redirection)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/SiroDiaz/laravel-redirection/run-tests?label=tests)](https://github.com/SiroDiaz/laravel-redirection/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/SiroDiaz/laravel-redirection/Check%20&%20fix%20styling?label=code%20style)](https://github.com/SiroDiaz/laravel-redirection/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/SiroDiaz/laravel-redirection.svg?style=flat-square)](https://packagist.org/packages/SiroDiaz/laravel-redirection)
 
 ---
 This repo can be used to scaffold a Laravel package. Follow these steps to get started:
@@ -30,34 +30,57 @@ We highly appreciate you sending us a postcard from your hometown, mentioning wh
 You can install the package via composer:
 
 ```bash
-composer require :vendor_slug/:package_slug
+composer require SiroDiaz/laravel-redirection
 ```
 
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --provider="VendorName\Skeleton\SkeletonServiceProvider" --tag=":package_slug-migrations"
+php artisan vendor:publish --provider="SiroDiaz\Redirection\RedirectionServiceProvider" --tag="laravel-redirection-migrations"
 php artisan migrate
 ```
 
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --provider="VendorName\Skeleton\SkeletonServiceProvider" --tag=":package_slug-config"
+php artisan vendor:publish --provider="SiroDiaz\Redirection\RedirectionServiceProvider" --tag="laravel-redirection-config"
 ```
 
 This is the contents of the published config file:
 
 ```php
 return [
+    /*
+    |
+    | The redirect statuses that you will use in your application.
+    | By default, the "301", "302" and "307" are defined.
+    |
+    */
+    'statuses' => [
+        302 => 'Normal (302)',
+        301 => 'Permanent (301)',
+        307 => 'Temporary (307)',
+    ],
+
+    /*
+    |
+    | Concrete implementation for the "redirection model".
+    | To extend or replace this functionality, change the value below with your full "redirection model" FQN.
+    |
+    | Your class will have to (first option is recommended):
+    | - extend the "SiroDiaz\Redirection\Models\Redirection" class
+    | - or at least implement the "SiroDiaz\Redirection\Contracts\RedirectionModelContract" interface.
+    |
+    | Regardless of the concrete implementation below, you can still use it like:
+    | - app('redirection.model') OR app('\SiroDiaz\Redirection\Models\Redirection\Contracts\RedirectionModelContract')
+    | - or you could even use your own class as a direct implementation
+    |
+    */
+    'model' => SiroDiaz\Redirection\Models\Redirection::class,
 ];
+
 ```
 
 ## Usage
-
-```php
-$skeleton = new VendorName\Skeleton();
-echo $skeleton->echoPhrase('Hello, VendorName!');
-```
 
 ## Testing
 
@@ -73,13 +96,9 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
-
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [SiroDiaz](https://github.com/SiroDiaz)
 - [All Contributors](../../contributors)
 
 ## License

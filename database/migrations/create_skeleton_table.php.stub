@@ -8,12 +8,18 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('skeleton_table', function (Blueprint $table) {
+        Schema::create('redirections', function (Blueprint $table) {
             $table->id();
-
-            // add fields
+            $table->string('old_url')->unique();
+            $table->string('new_url');
+            $table->smallInteger('status_code')->default(301);
 
             $table->timestamps();
         });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('redirections');
     }
 };

@@ -135,12 +135,12 @@ foreach ($files as $file) {
     ]);
 
     match (true) {
-        str_contains($file, 'src/Skeleton.php') => rename($file, './src/' . $className . '.php'),
-        str_contains($file, 'src/SkeletonServiceProvider.php') => rename($file, './src/' . $className . 'ServiceProvider.php'),
-        str_contains($file, 'src/SkeletonFacade.php') => rename($file, './src/' . $className . 'Facade.php'),
-        str_contains($file, 'src/Commands/SkeletonCommand.php') => rename($file, './src/Commands/' . $className . 'Command.php'),
+        str_contains($file, 'src/Redirection.php') => rename($file, './src/' . $className . '.php'),
+        str_contains($file, 'src/RedirectionServiceProvider.php') => rename($file, './src/' . $className . 'ServiceProvider.php'),
+        str_contains($file, 'src/RedirectionFacade.php') => rename($file, './src/' . $className . 'Facade.php'),
+        str_contains($file, 'src/Commands/RedirectionCommand.php') => rename($file, './src/Commands/' . $className . 'Command.php'),
         str_contains($file, 'database/migrations/create_skeleton_table.php.stub') => rename($file, './database/migrations/create_' . $packageSlugWithoutPrefix . '_table.php.stub'),
-        str_contains($file, 'config/skeleton.php') => rename($file, './config/' . $packageSlugWithoutPrefix . '.php'),
+        str_contains($file, 'config/redirection.php') => rename($file, './config/' . $packageSlugWithoutPrefix . '.php'),
         default => [],
     };
 }
