@@ -13,17 +13,17 @@ class RedirectRequests
      * @param Closure $next
      * @return mixed
      */
-    public function handle($request, Closure $next): mixed
+    public function handle($request, Closure $next)
     {
-        $redirect = app('redirection.model')->findValidOrNull($request->path());
+        $redirection = app('redirection.model')->findValidOrNull($request->path());
 
-        if (!$redirect && $request->getQueryString()) {
+        if (!$redirection && $request->getQueryString()) {
             $path = $request->path().'?'.$request->getQueryString();
             $redirect = app('redirect.model')->findValidOrNull($path);
         }
 
-        if ($redirect && $redirect->exists) {
-            return redirect($redirect->new_url, $redirect->status);
+        if ($redirection && $redirection->exists) {
+            return redirect($redirection->new_url, $redirection->status);
         }
 
         return $next($request);

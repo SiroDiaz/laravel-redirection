@@ -2,6 +2,9 @@
 
 return [
     /*
+    |--------------------------------------------------------------------------
+    | Status codes valid for redirections
+    |--------------------------------------------------------------------------
     |
     | The redirect statuses that you will use in your application.
     | By default, the "301", "302" and "307" are defined.
@@ -14,6 +17,9 @@ return [
     ],
 
     /*
+    |--------------------------------------------------------------------------
+    | Default model used for redirections
+    |--------------------------------------------------------------------------
     |
     | Concrete implementation for the "redirection model".
     | To extend or replace this functionality, change the value below with your full "redirection model" FQN.
