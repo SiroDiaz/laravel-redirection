@@ -11,8 +11,8 @@ return [
     |
     */
     'statuses' => [
-        302 => 'Normal (302)',
         301 => 'Permanent (301)',
+        302 => 'Normal (302)',
         307 => 'Temporary (307)',
     ],
 
