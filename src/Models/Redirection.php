@@ -2,8 +2,8 @@
 
 namespace SiroDiaz\Redirection\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use SiroDiaz\Redirection\Contracts\RedirectionModelContract;
 use SiroDiaz\Redirection\Exceptions\RedirectionException;
 
@@ -116,7 +116,6 @@ class Redirection extends Model implements RedirectionModelContract
             $item->update(['new_url' => $finalUrl]);
             $item->syncOldRedirects($model, $finalUrl);
         }
-
     }
 
     /**
@@ -136,5 +135,4 @@ class Redirection extends Model implements RedirectionModelContract
             ->latest()
             ->first();
     }
-
 }
