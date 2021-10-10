@@ -3,9 +3,9 @@
 namespace SiroDiaz\Redirection;
 
 use Illuminate\Routing\Router;
+use SiroDiaz\Redirection\Commands\RedirectionCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use SiroDiaz\Redirection\Commands\RedirectionCommand;
 
 class RedirectionServiceProvider extends PackageServiceProvider
 {
