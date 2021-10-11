@@ -30,7 +30,6 @@ class RedirectionTest extends TestCase
         $response = $this->get('1');
         $response->assertRedirect('2');
 
-
         Redirection::create([
             'old_url' => '2',
             'new_url' => '3',
