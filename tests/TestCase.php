@@ -3,11 +3,8 @@
 namespace SiroDiaz\Redirection\Tests;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Routing\Router;
-use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase as Orchestra;
 use SiroDiaz\Redirection\RedirectionServiceProvider;
 use SiroDiaz\Redirection\RedirectRequests;
@@ -41,13 +38,25 @@ class TestCase extends Orchestra
      */
     protected function defineRoutes($router): void
     {
-        $router->middleware(RedirectRequests::class)->get('old-url', function () { return ''; });
-        $router->middleware(RedirectRequests::class)->get('/new/url', function () { return ''; });
+        $router->middleware(RedirectRequests::class)->get('old-url', function () {
+            return '';
+        });
+        $router->middleware(RedirectRequests::class)->get('/new/url', function () {
+            return '';
+        });
 
-        $router->middleware(RedirectRequests::class)->get('/1', function () { return ''; });
-        $router->middleware(RedirectRequests::class)->get('/2', function () { return ''; });
-        $router->middleware(RedirectRequests::class)->get('/3', function () { return ''; });
-        $router->middleware(RedirectRequests::class)->get('/4', function () { return ''; });
+        $router->middleware(RedirectRequests::class)->get('/1', function () {
+            return '';
+        });
+        $router->middleware(RedirectRequests::class)->get('/2', function () {
+            return '';
+        });
+        $router->middleware(RedirectRequests::class)->get('/3', function () {
+            return '';
+        });
+        $router->middleware(RedirectRequests::class)->get('/4', function () {
+            return '';
+        });
     }
 
     protected function getPackageProviders($app): array

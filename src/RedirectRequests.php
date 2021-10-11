@@ -20,7 +20,7 @@ class RedirectRequests
     {
         $redirection = app()->make(config('redirection.model'))->findValidOrNull($request->path());
         // dd(app()->make(config('redirection.model'))->findValidOrNull($request->path()));
-        if (!$redirection && $request->getQueryString()) {
+        if (! $redirection && $request->getQueryString()) {
             $path = sprintf('%s?%s', $request->path(), $request->getQueryString());
             $redirection = app()->make(config('redirection.model'))->findValidOrNull($path);
         }
