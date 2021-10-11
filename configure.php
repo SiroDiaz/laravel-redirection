@@ -138,7 +138,7 @@ foreach ($files as $file) {
         str_contains($file, 'src/Redirection.php') => rename($file, './src/' . $className . '.php'),
         str_contains($file, 'src/RedirectionServiceProvider.php') => rename($file, './src/' . $className . 'ServiceProvider.php'),
         str_contains($file, 'src/RedirectionFacade.php') => rename($file, './src/' . $className . 'Facade.php'),
-        str_contains($file, 'src/Commands/RedirectionCommand.php') => rename($file, './src/Commands/' . $className . 'Command.php'),
+        str_contains($file, 'src/Commands/RedirectionListCommand.php') => rename($file, './src/Commands/' . $className . 'Command.php'),
         str_contains($file, 'database/migrations/create_redirections_table.php.stub') => rename($file, './database/migrations/create_' . $packageSlugWithoutPrefix . '_table.php.stub'),
         str_contains($file, 'config/redirection.php') => rename($file, './config/' . $packageSlugWithoutPrefix . '.php'),
         default => [],

@@ -3,7 +3,7 @@
 namespace SiroDiaz\Redirection;
 
 use Illuminate\Routing\Router;
-use SiroDiaz\Redirection\Commands\RedirectionCommand;
+use SiroDiaz\Redirection\Commands\RedirectionListCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -25,6 +25,6 @@ class RedirectionServiceProvider extends PackageServiceProvider
             ->name('laravel-redirection')
             ->hasConfigFile()
             ->hasMigration('create_redirections_table')
-            ->hasCommand(RedirectionCommand::class);
+            ->hasCommand(RedirectionListCommand::class);
     }
 }
