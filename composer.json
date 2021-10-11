@@ -37,8 +37,7 @@
     },
     "autoload": {
         "psr-4": {
-            "SiroDiaz\\Redirection\\": "src",
-            "SiroDiaz\\Redirection\\Database\\Factories\\": "database/factories"
+            "SiroDiaz\\Redirection\\": "src"
         }
     },
     "autoload-dev": {
