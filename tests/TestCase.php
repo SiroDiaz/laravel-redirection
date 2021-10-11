@@ -1,27 +1,53 @@
 <?php
 
-namespace VendorName\Skeleton\Tests;
+namespace SiroDiaz\Redirection\Tests;
 
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase as Orchestra;
 use SiroDiaz\Redirection\RedirectionServiceProvider;
 use SiroDiaz\Redirection\RedirectRequests;
 
 class TestCase extends Orchestra
 {
+    /**
+     * @throws BindingResolutionException
+     */
     public function setUp(): void
     {
         parent::setUp();
 
         $this->getEnvironmentSetUp($this->app);
         $this->setUpDatabase();
-        $this->setUpMiddleware($this->app);
+        //$this->setUpMiddleware($this->app);
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'SiroDiaz\\Redirection\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            function (string $modelName) {
+                return 'SiroDiaz\\Redirection\\Database\\Factories\\' . class_basename($modelName) . 'Factory';
+            }
         );
+    }
+
+    /**
+     * Define routes setup.
+     *
+     * @param  Router  $router
+     *
+     * @return void
+     */
+    protected function defineRoutes($router): void
+    {
+        $router->middleware(RedirectRequests::class)->get('old-url', function () { return ''; });
+        $router->middleware(RedirectRequests::class)->get('/new/url', function () { return ''; });
+
+        $router->middleware(RedirectRequests::class)->get('/1', function () { return ''; });
+        $router->middleware(RedirectRequests::class)->get('/2', function () { return ''; });
+        $router->middleware(RedirectRequests::class)->get('/3', function () { return ''; });
+        $router->middleware(RedirectRequests::class)->get('/4', function () { return ''; });
     }
 
     protected function getPackageProviders($app): array
@@ -33,22 +59,18 @@ class TestCase extends Orchestra
 
     public function getEnvironmentSetUp($app): void
     {
-        config()->set('database.default', 'testing');
+        config()->set('database.default', 'sqlite');
         config()->set('database.connections.sqlite', [
             'driver' => 'sqlite',
             'database' => ':memory:',
             'prefix' => '',
+            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ]);
     }
 
     public function setUpDatabase(): void
     {
-        $migration = include __DIR__.'/../database/migrations/create_skeleton_table.php.stub';
+        $migration = include __DIR__ . '/../database/migrations/create_redirections_table.php.stub';
         $migration->up();
-    }
-
-    public function setUpMiddleware(Application $app): void
-    {
-        $app->make(Kernel::class)->pushMiddleware(RedirectRequests::class);
     }
 }

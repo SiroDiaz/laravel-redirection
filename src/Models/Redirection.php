@@ -10,9 +10,7 @@ use SiroDiaz\Redirection\Exceptions\RedirectionException;
 /**
  * @property string $old_url
  * @property string $new_url
- * @property int $status
- * @method whereOldUrl
- * @method whereNewUrl
+ * @property int $status_code
  */
 class Redirection extends Model implements RedirectionModelContract
 {
@@ -23,7 +21,7 @@ class Redirection extends Model implements RedirectionModelContract
     protected $fillable = [
         'old_url',
         'new_url',
-        'status',
+        'status_code',
     ];
 
     public static function boot()
@@ -131,7 +129,7 @@ class Redirection extends Model implements RedirectionModelContract
     {
         return static::where('old_url', $path === '/' ? $path : trim($path, '/'))
             ->whereNotNull('new_url')
-            ->whereIn('status', array_keys(self::getStatuses()))
+            ->whereIn('status_code', array_keys(self::getStatuses()))
             ->latest()
             ->first();
     }
