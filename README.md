@@ -98,7 +98,18 @@ Finally, you have to vendor:publish the `sirodiaz/laravel-redirection` config fi
 class used now.
 
 If you want to add more status codes for another type of redirect purposes, add them to your config/redirection.php
-config file. By default, you have the most common redirections codes: 301, 302 and 307. 
+config file. By default, you have the most common redirections codes: 301, 302 and 307.
+
+Ey! **don't forget** to append the middleware `SiroDiaz\Redirection\RedirectRequests` to your `app/Http/Kernel.php` file
+
+```php
+// app/Http/Kernel.php
+
+    protected $middleware = [
+        ...
+        \SiroDiaz\Redirection\RedirectRequests::class,
+    ],
+```
 
 ## Testing
 
