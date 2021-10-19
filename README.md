@@ -35,6 +35,8 @@ php artisan vendor:publish --provider="SiroDiaz\Redirection\RedirectionServicePr
 This is the contents of the published config file:
 
 ```php
+<?php
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -72,6 +74,31 @@ return [
 ];
 
 ```
+
+You can change and extend the default `SiroDiaz\Redirection\Models\Redirection` model class.
+Image that you want to add some methods or fields. You would need to create a new model class, for example `App\Models\Redirect`.
+
+Here is a basic example of how to extend the functionality of the default Redirection model.
+We want to include support for Laravel BackPack admin panel would be:
+```php
+<?php
+
+namespace App\Models;
+
+use SiroDiaz\Redirection\Models\Redirection as RedirectionBaseModel;
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
+
+class Redirect extends Redirection
+{
+    use CrudTrait;
+}
+```
+
+Finally, you have to vendor:publish the `sirodiaz/laravel-redirection` config file to change the model
+class used now.
+
+If you want to add more status codes for another type of redirect purposes, add them to your config/redirection.php
+config file. By default, you have the most common redirections codes: 301, 302 and 307. 
 
 ## Testing
 
