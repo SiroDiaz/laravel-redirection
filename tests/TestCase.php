@@ -2,7 +2,6 @@
 
 namespace SiroDiaz\Redirection\Tests;
 
-use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Routing\Router;
 use Orchestra\Testbench\TestCase as Orchestra;
