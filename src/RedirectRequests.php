@@ -18,15 +18,21 @@ class RedirectRequests
      */
     public function handle(Request $request, Closure $next)
     {
-        $redirection = app()->make(config('redirection.model'))->findValidOrNull($request->path());
+        $driver = config('redirection.driver');
+
+        $redirectorDriverInstance = app()->make(
+            config("redirection.drivers.{$driver}.driver"),
+            [$driver],
+        );
+        $redirection = $redirectorDriverInstance->getRedirectFor($request->path());
 
         if (! $redirection && $request->getQueryString()) {
             $path = sprintf('%s?%s', $request->path(), $request->getQueryString());
-            $redirection = app()->make(config('redirection.model'))->findValidOrNull($path);
+            $redirection = $redirectorDriverInstance->getRedirectFor($path);
         }
 
-        if ($redirection && $redirection->exists) {
-            return redirect($redirection->new_url, $redirection->status_code);
+        if ($redirection) {
+            return redirect($redirection->newUrl, $redirection->statusCode);
         }
 
         return $next($request);

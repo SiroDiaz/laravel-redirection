@@ -1,27 +1,32 @@
 <?php
 
-namespace SiroDiaz\Redirection\Tests;
+namespace SiroDiaz\Redirection\Tests\Drivers;
 
 use SiroDiaz\Redirection\Exceptions\RedirectionException;
 use SiroDiaz\Redirection\Models\Redirection;
+use SiroDiaz\Redirection\Tests\TestCase;
 
-class RedirectionTest extends TestCase
+class DatabaseRedirectionTest extends TestCase
 {
     /** @test */
     public function it_redirects_a_request(): void
     {
+        $this->app['config']->set('redirection.driver', 'database');
+
         Redirection::create([
             'old_url' => 'old-url',
             'new_url' => 'new/url',
         ]);
 
-        $response = $this->get('old-url');
-        $response->assertRedirect('new/url');
+        $this->get('old-url')
+            ->assertRedirect('new/url');
     }
 
     /** @test */
     public function it_redirects_nested_requests(): void
     {
+        $this->app['config']->set('redirection.driver', 'database');
+
         Redirection::create([
             'old_url' => '1',
             'new_url' => '2',
@@ -73,6 +78,8 @@ class RedirectionTest extends TestCase
     /** @test */
     public function it_guards_against_creating_redirect_loops(): void
     {
+        $this->app['config']->set('redirection.driver', 'database');
+
         $this->expectException(RedirectionException::class);
 
         Redirection::create([

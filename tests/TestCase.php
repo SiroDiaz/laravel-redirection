@@ -12,7 +12,6 @@ use SiroDiaz\Redirection\RedirectRequests;
 class TestCase extends Orchestra
 {
     /**
-     * @throws BindingResolutionException
      */
     public function setUp(): void
     {
