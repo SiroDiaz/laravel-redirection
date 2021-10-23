@@ -2,9 +2,8 @@
 
 namespace SiroDiaz\Redirection\Drivers;
 
-use Illuminate\Contracts\Container\BindingResolutionException;
-use SiroDiaz\Redirection\Redirect;
 use SiroDiaz\Redirection\Contracts\RedirectorBase;
+use SiroDiaz\Redirection\Redirect;
 
 class DatabaseRedirector implements RedirectorBase
 {

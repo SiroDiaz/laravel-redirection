@@ -19,7 +19,7 @@ class FileRedirector implements RedirectorBase
     {
         $redirect = config(config("redirection.drivers.{$this->driver}.source"));
 
-        if (!array_key_exists($path, $redirect)) {
+        if (! array_key_exists($path, $redirect)) {
             return null;
         }
 

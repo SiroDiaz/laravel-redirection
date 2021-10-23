@@ -2,7 +2,6 @@
 
 namespace SiroDiaz\Redirection\Tests\Drivers;
 
-use SiroDiaz\Redirection\Drivers\FileRedirector;
 use SiroDiaz\Redirection\Tests\TestCase;
 
 class FileRedirectorTest extends TestCase
