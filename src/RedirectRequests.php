@@ -18,11 +18,11 @@ class RedirectRequests
      */
     public function handle(Request $request, Closure $next)
     {
-        $driver = config('redirection.driver');
+        $driverName = config('redirection.driver');
 
         $redirectorDriverInstance = app()->make(
-            config("redirection.drivers.{$driver}.driver"),
-            [$driver],
+            config("redirection.drivers.{$driverName}.driver"),
+            [$driverName],
         );
         $redirection = $redirectorDriverInstance->getRedirectFor($request->path());
 

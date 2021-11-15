@@ -2,10 +2,10 @@
 
 namespace SiroDiaz\Redirection\Drivers;
 
-use SiroDiaz\Redirection\Contracts\RedirectorBase;
+use SiroDiaz\Redirection\Contracts\Redirector;
 use SiroDiaz\Redirection\Redirect;
 
-class FileRedirector implements RedirectorBase
+class FileRedirector implements Redirector
 {
     /** @var string */
     protected string $driver;

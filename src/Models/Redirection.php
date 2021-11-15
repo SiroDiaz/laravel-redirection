@@ -94,7 +94,7 @@ class Redirection extends Model implements RedirectionModelContract
      * @param string $value
      * @returns void
      */
-    public function setNewUrlAttribute(string $value)
+    public function setNewUrlAttribute(string $value): void
     {
         $this->attributes['new_url'] = trim(parse_url($value)['path'], '/');
     }

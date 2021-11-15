@@ -33,7 +33,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you may specify the default redirect driver that you want to use.
-    | The "config" driver is used by default when you want to go faster.
+    | The "config" driver is used by default when you want to code faster.
     | Consider database driver better for admin panel configuration backed by
     | a relational DB.
     |
@@ -46,15 +46,19 @@ return [
     |--------------------------------------------------------------------------
     |
     | Concrete implementation for the "redirection model".
-    | To extend or replace this functionality, change the value below with your full "redirection model" FQN.
+    | To extend or replace this functionality, change the value below with
+    | your full "redirection model" FQN.
     |
     | Your class will have to (first option is recommended):
     | - extend the "SiroDiaz\Redirection\Models\Redirection" class
     | - or at least implement the "SiroDiaz\Redirection\Contracts\RedirectionModelContract" interface.
     |
     | Regardless of the concrete implementation below, you can still use it like:
-    | - app('redirection.model') OR app('\SiroDiaz\Redirection\Models\Redirection\Contracts\RedirectsModelContract')
-    | - or you could even use your own class as a direct implementation
+    | - app('redirection.') OR app('\SiroDiaz\Redirection\Contracts\RedirectionModelContract')
+    | - or you could even use your own class as a direct implementation. For this
+    | case you must extend from "SiroDiaz\Redirection\Models\Redirection" model class and
+    | replace in the published config file 'drivers.database.source'.
+    |
     |
     */
     'drivers' => [

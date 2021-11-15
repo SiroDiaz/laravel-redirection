@@ -4,7 +4,7 @@ namespace SiroDiaz\Redirection\Contracts;
 
 use SiroDiaz\Redirection\Redirect;
 
-interface RedirectorBase
+interface Redirector
 {
     public function getRedirectFor(string $path): ?Redirect;
 }
