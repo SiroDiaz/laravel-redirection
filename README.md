@@ -1,4 +1,4 @@
-# Laravel package for manage your URL redirects in database to get better SEO results
+# Laravel package for manage your URL redirects in database or other sources to get better SEO results
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/sirodiaz/laravel-redirection.svg?style=flat-square)](https://packagist.org/packages/SiroDiaz/laravel-redirection)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/SiroDiaz/laravel-redirection/run-tests?label=tests&style=flat-square)](https://github.com/SiroDiaz/laravel-redirection/actions?query=workflow%3Arun-tests+branch%3Amain)
@@ -177,6 +177,7 @@ Ey! **don't forget** to append the middleware `SiroDiaz\Redirection\RedirectRequ
 ```
 
 ## Extending and creating new redirect Drivers
+**TODO**
 
 ## Testing this package for contribution
 
