@@ -1,6 +1,6 @@
 {
     "name": "sirodiaz/laravel-redirection",
-    "description": "Laravel package that allows storing in database urls to redirect for SEO purposes",
+    "description": "Laravel package that allows storing in database (or other sources) urls to redirect for SEO purposes",
     "keywords": [
         "sirodiaz",
         "laravel",
