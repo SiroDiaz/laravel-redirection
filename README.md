@@ -7,7 +7,7 @@
 
 ## Requirements
 
-You need PHP ^7.4 or higher. It is only tested and was designed for Laravel 8.x.
+You need PHP ^7.4 or higher. It is only tested and was designed for Laravel 8 and 9.
 This package will receive updates for future Laravel versions. Previous Laravel versions
 are not contemplated so use [Neurony/laravel-redirects](https://github.com/Neurony/laravel-redirects) package for
 older Laravel versions.
