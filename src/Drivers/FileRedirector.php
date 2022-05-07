@@ -19,6 +19,11 @@ class FileRedirector implements Redirector
     {
         $redirect = config(config("redirection.drivers.{$this->driver}.source"));
 
+        if (false === config('redirection.case-sensitive')) {
+            $redirect = array_change_key_case($redirect, CASE_LOWER);
+            $path = strtolower($path);
+        }
+
         if (! array_key_exists($path, $redirect)) {
             return null;
         }

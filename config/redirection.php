@@ -29,6 +29,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Case sensitivity
+    |--------------------------------------------------------------------------
+    |
+    | Whether to match URLs case sensitively or not.
+    | Default to false because most URLs are not case sensitive.
+    |
+    */
+    'case-sensitive' => (bool) env('REDIRECT_CASE_SENSITIVE', false),
+
+    /*
+    |--------------------------------------------------------------------------
     | Redirect Driver
     |--------------------------------------------------------------------------
     |

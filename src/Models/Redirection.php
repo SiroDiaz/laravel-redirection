@@ -61,7 +61,7 @@ class Redirection extends Model implements RedirectionModelContract
      */
     public function scopeWhereOldUrl(Builder $query, string $url): Builder
     {
-        return $query->where('old_url', $url);
+        return $query->where('old_url', config('redirection.case-sensitive') ? $url : strtolower($url));
     }
 
     /**
@@ -74,7 +74,7 @@ class Redirection extends Model implements RedirectionModelContract
      */
     public function scopeWhereNewUrl(Builder $query, string $url): Builder
     {
-        return $query->where('new_url', $url);
+        return $query->where('new_url', config('redirection.case-sensitive') ? $url : strtolower($url));
     }
 
     /**
@@ -85,7 +85,8 @@ class Redirection extends Model implements RedirectionModelContract
      */
     public function setOldUrlAttribute(string $value): void
     {
-        $this->attributes['old_url'] = trim(parse_url($value)['path'], '/');
+        $value = trim(parse_url($value)['path'], '/');
+        $this->attributes['old_url'] = config('redirection.case-sensitive') ? $value : strtolower($value);
     }
 
     /**
@@ -96,7 +97,8 @@ class Redirection extends Model implements RedirectionModelContract
      */
     public function setNewUrlAttribute(string $value): void
     {
-        $this->attributes['new_url'] = trim(parse_url($value)['path'], '/');
+        $value = trim(parse_url($value)['path'], '/');
+        $this->attributes['new_url'] = config('redirection.case-sensitive') ? $value : strtolower($value);
     }
 
     /**
@@ -127,7 +129,9 @@ class Redirection extends Model implements RedirectionModelContract
      */
     public static function findValidOrNull(string $path): ?Redirection
     {
-        return static::where('old_url', $path === '/' ? $path : trim($path, '/'))
+        $path = ($path === '/' ? $path : trim($path, '/'));
+
+        return static::where('old_url', config('redirection.case-sensitive') ? $path : strtolower($path))
             ->whereNotNull('new_url')
             ->whereIn('status_code', array_keys(self::getStatuses()))
             ->latest()

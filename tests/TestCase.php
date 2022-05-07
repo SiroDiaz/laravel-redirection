@@ -39,6 +39,9 @@ class TestCase extends Orchestra
         $router->middleware(RedirectRequests::class)->get('old-url', function () {
             return '';
         });
+        $router->middleware(RedirectRequests::class)->get('OLD-URL', function () {
+            return '';
+        });
         $router->middleware(RedirectRequests::class)->get('/new/url', function () {
             return '';
         });

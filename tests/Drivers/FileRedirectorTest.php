@@ -18,6 +18,30 @@ class FileRedirectorTest extends TestCase
     }
 
     /** @test */
+    public function it_inserts_a_path_redirection_and_redirects_a_request_with_case_sensitive_matching(): void
+    {
+        $this->app['config']->set('redirection.driver', 'config');
+        $this->app['config']->set('redirection.case-sensitive', true);
+        $this->app['config']->set('redirection.urls', [
+            'old-url' => 'new/url',
+        ]);
+
+        $this->get('old-URL')->assertNotFound();
+    }
+
+    /** @test */
+    public function it_inserts_a_path_redirection_and_redirects_a_request_with_case_insensitive_matching(): void
+    {
+        $this->app['config']->set('redirection.driver', 'config');
+        $this->app['config']->set('redirection.case-sensitive', false);
+        $this->app['config']->set('redirection.urls', [
+            'old-url' => 'new/url',
+        ]);
+
+        $this->get('OLD-URL')->assertRedirect('new/url');
+    }
+
+    /** @test */
     public function it_inserts_a_path_redirection_and_redirects_a_request_with_a_custom_status_code(): void
     {
         $this->app['config']->set('redirection.driver', 'config');

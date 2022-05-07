@@ -23,6 +23,36 @@ class DatabaseRedirectionTest extends TestCase
     }
 
     /** @test */
+    public function it_doesnt_redirect_case_sensitive_requests(): void
+    {
+        $this->app['config']->set('redirection.driver', 'database');
+        $this->app['config']->set('redirection.case-sensitive', true);
+
+        Redirection::create([
+            'old_url' => 'old-url',
+            'new_url' => 'new/url',
+        ]);
+
+        $this->get('old-URL')
+            ->assertNotFound();
+    }
+
+    /** @test */
+    public function it_does_redirect_case_insensitive_requests(): void
+    {
+        $this->app['config']->set('redirection.driver', 'database');
+        $this->app['config']->set('redirection.case-sensitive', false);
+
+        Redirection::create([
+            'old_url' => 'old-url',
+            'new_url' => 'new/url',
+        ]);
+
+        $this->get('OLD-URL')
+            ->assertRedirect('new/url');
+    }
+
+    /** @test */
     public function it_redirects_nested_requests(): void
     {
         $this->app['config']->set('redirection.driver', 'database');
