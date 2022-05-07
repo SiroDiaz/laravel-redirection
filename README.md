@@ -37,6 +37,8 @@ This is the contents of the published config file:
 ```php
 <?php
 
+<?php
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -63,6 +65,17 @@ return [
     |
     */
     'default_status_code' => (int)env('REDIRECT_DEFAULT_STATUS', 301),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Case sensitivity
+    |--------------------------------------------------------------------------
+    |
+    | Whether to match URLs case sensitively or not.
+    | Default to false because most URLs are not case sensitive.
+    |
+    */
+    'case-sensitive' => (bool) env('REDIRECT_CASE_SENSITIVE', false),
 
     /*
     |--------------------------------------------------------------------------
