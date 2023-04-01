@@ -1,13 +1,13 @@
 # Laravel package for manage your URL redirects in database or other sources to get better SEO results
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/sirodiaz/laravel-redirection.svg?style=flat-square)](https://packagist.org/packages/SiroDiaz/laravel-redirection)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/SiroDiaz/laravel-redirection/run-tests?label=tests&style=flat-square)](https://github.com/SiroDiaz/laravel-redirection/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/SiroDiaz/laravel-redirection/Check%20&%20fix%20styling?label=code%20style&style=flat-square)](https://github.com/SiroDiaz/laravel-redirection/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![run-tests](https://github.com/SiroDiaz/laravel-redirection/actions/workflows/run-tests.yml/badge.svg)](https://github.com/SiroDiaz/laravel-redirection/actions/workflows/run-tests.yml)
+[![Check & fix styling](https://github.com/SiroDiaz/laravel-redirection/actions/workflows/php-cs-fixer.yml/badge.svg?branch=main)](https://github.com/SiroDiaz/laravel-redirection/actions/workflows/php-cs-fixer.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/SiroDiaz/laravel-redirection.svg?style=flat-square)](https://packagist.org/packages/SiroDiaz/laravel-redirection)
 
 ## Requirements
 
-You need PHP ^7.4 or higher. It is only tested and was designed for Laravel 8 and 9.
+You need PHP 8.0 or higher. It is only tested and was designed for Laravel 9 and 10.
 This package will receive updates for future Laravel versions. Previous Laravel versions
 are not contemplated so use [Neurony/laravel-redirects](https://github.com/Neurony/laravel-redirects) package for
 older Laravel versions.
